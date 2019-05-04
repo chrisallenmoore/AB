@@ -58,19 +58,24 @@
                     </small>
                     @endif
                 </div>
-                <div></div>
             </div>
             @endeach
 
             @each(reply in post.replies)
             <form action="{{ route('posts.answer.store', { slug: post.slug }) }}" method="POST" id="answer-{{ reply.id }}">
                 {{ csrfField() }}
+
                 <input type="hidden" name="answer_id" value="{{ reply.id }}">
             </form>
             @endeach
         </div>
-        <div><span class="text-muted">0 replies</span></div>
+        <div>
+            <span class="text-muted">
+                {{ post.replies.length }} {{ pluralize('reply', post.replies.length) }}
+            </span>
+        </div>
     </div>
+
     @loggedIn
     <form action="{{ route('posts.reply.store', { slug: post.slug }) }}" method="POST">
         {{ csrfField() }}
@@ -83,7 +88,7 @@
             <p class="help text-danger">{{ getErrorFor('body') }}</p>
             @endif
         </div>
-        <button class=" btn btn-primary" type="button">Button</button>
+        <button class=" btn btn-primary">Button</button>
     </form>
     @else
     <div>

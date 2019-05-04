@@ -48,8 +48,17 @@ a {
     text-decoration: none;
   }
 
-  color: #44475a;
   text-decoration: none;
+  color: #44475a;
+  //color: darken(#bd93f9, 15%);
+}
+
+.forum-post a {
+  color: darken(#bd93f9, 15%);
+
+  &:hover {
+    color: #bd93f9;
+  }
 }
 
 .list-group-item.active {
