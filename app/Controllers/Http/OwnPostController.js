@@ -14,7 +14,7 @@ class OwnPostController {
       .where('user_id', '=', auth.user.id)
       .paginate(request.input('page', 1), 20)
 
-    return view.render('index', {
+    return view.render('forum.index', {
       posts
     })
   }

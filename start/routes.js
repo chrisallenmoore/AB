@@ -18,40 +18,48 @@ const Route = use('Route')
 
 Route.get('/', 'HomeController.index').as('home')
 
-Route.get('/search', 'SearchController.index').as('search')
+Route.get('/forum', 'ForumHomeController.index').as('forum')
 
-Route.post('/posts/:slug/answer', 'PostAnswerController.store')
-  .as('posts.answer.store')
-  .middleware(['auth'])
+Route.group(() => {
 
-Route.delete('/posts/:slug/answer', 'PostAnswerController.destroy')
-  .as('posts.answer.destroy')
-  .middleware(['auth'])
+  Route.get('/search', 'SearchController.index').as('search')
 
-Route.post('/posts/:slug/reply', 'PostReplyController.store')
-  .as('posts.reply.store')
-  .middleware(['auth'])
+  Route.post('/posts/:slug/answer', 'PostAnswerController.store')
+    .as('posts.answer.store')
+    .middleware(['auth'])
 
-Route.get('/posts/create', 'PostController.create')
-  .as('posts.create')
-  .middleware(['auth'])
+  Route.delete('/posts/:slug/answer', 'PostAnswerController.destroy')
+    .as('posts.answer.destroy')
+    .middleware(['auth'])
 
-Route.post('/posts', 'PostController.store')
-  .as('posts.store')
-  .middleware(['auth'])
+  Route.post('/posts/:slug/reply', 'PostReplyController.store')
+    .as('posts.reply.store')
+    .middleware(['auth'])
 
-Route.get('/unanswered', 'UnansweredPostController.index')
-  .as('posts.unanswered')
+  Route.get('/posts/create', 'PostController.create')
+    .as('posts.create')
+    .middleware(['auth'])
 
-Route.get('/own', 'OwnPostController.index')
-  .as('posts.own')
-  .middleware(['auth'])
+  Route.post('/posts', 'PostController.store')
+    .as('posts.store')
+    .middleware(['auth'])
 
-Route.get('/tag/:slug', 'TagPostController.index')
-  .as('posts.tags')
+  Route.get('/unanswered', 'UnansweredPostController.index')
+    .as('posts.unanswered')
 
-Route.get('/posts/:slug', 'PostController.show')
-  .as('posts.show')
+  Route.get('/own', 'OwnPostController.index')
+    .as('posts.own')
+    .middleware(['auth'])
+
+  Route.get('/tag/:slug', 'TagPostController.index')
+    .as('posts.tags')
+
+  Route.get('/posts/:slug', 'PostController.show')
+    .as('posts.show')
+
+}).prefix('/forum')
+
+
 
 Route.get('/auth/register', 'Auth/RegisterController.index')
   .as('auth.register')

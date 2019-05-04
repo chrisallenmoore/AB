@@ -1,0 +1,38 @@
+$primary: #44475a;
+@import '../../node_modules/bulma/sass/utilities/_all';
+@import '../../node_modules/bulma/sass/utilities/functions';
+
+// customize
+
+@import '../../node_modules/bulma/bulma';
+
+$section-padding: 1.5rem 1.5rem;
+$menu-item-active-background-color: transparent;
+$menu-item-active-color: $link;
+
+
+body,
+html {
+  min-height: 100%;
+  background-color: #F2F6FA;
+}
+
+.top-nav {
+  border-top: 5px solid #ff79c6
+}
+
+.top-nav .container {
+  border-bottom: 1px solid #E6EAEE;
+}
+
+.sub-nav {
+  margin-bottom: 40px;
+}
+
+/* Auth */
+
+.auth {
+  .hero {
+    background: #F2F6FA;
+  }
+}

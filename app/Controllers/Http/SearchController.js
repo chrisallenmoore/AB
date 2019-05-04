@@ -11,10 +11,10 @@ class SearchController {
       .forIndex()
       .whereRaw('"title" ~ ?', request.input('q'))
       .orWhereRaw('"body" ~ ?', request.input('q'))
-      .whereNotNull('title')// this
+      .whereNotNull('title') // this
       .paginate(request.input('page', 1), 20)
 
-    return view.render('index', {
+    return view.render('forum.index', {
       posts
     })
   }

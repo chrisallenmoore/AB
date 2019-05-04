@@ -1,17 +1,10 @@
-<a href="{{ route('posts.create') }}" class="button is-info is-primary is-block is-medium">New Post</a>
-
-<br>
-
-<aside class="menu">
-    <p class="menu-label">
-        Tags
-    </p>
-    <ul class="menu-list">
+<aside>
+    <a class="btn btn-action w-100 mb-4 p-2 text-white" href="{{ route('posts.create') }}">New Post</a>
+    <span class="font-weight-bold">Topics</span>
+    <ul class="list-group">
         @each(tag in tags.toJSON())
-        <li>
-            <a class="is-info{{ request.match(['/tag/' + tag.slug]) ? ' is-active' : '' }}" href="{{ route('posts.tags', { slug: tag.slug }) }}">
-                {{ tag.name }}
-            </a>
+        <li class="list-group-item {{ request.match(['/forum/tag/' + tag.slug]) ? ' active' : '' }}">
+            <a href="{{ route('posts.tags', { slug: tag.slug }) }}">{{ tag.name }}</a>
         </li>
         @endeach
     </ul>

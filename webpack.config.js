@@ -1,4 +1,6 @@
+const webpack = require('webpack')
 const path = require('path');
+const autoprefixer = require("autoprefixer");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
@@ -13,7 +15,34 @@ module.exports = {
   module: {
     rules: [{
       test: /\.(sass|scss)$/,
-      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+      /*use: [{
+          loader: 'MiniCssExtractPlugin.loader'
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            modules: true,
+            localIdentName: '[local]_[hash:base64:5]'
+          }
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+            config: {
+              path: 'postcss.config.js'
+            }
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }
+      ],*/
     }, ],
   },
   plugins: [
@@ -24,6 +53,15 @@ module.exports = {
     new ExtraWatchWebpackPlugin({
       files: [],
       dirs: ['./resources'],
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: ['last 2 versions']
+          })
+        ]
+      }
     }),
     // use BrowserSync to reload the browser window when changes are made to styles or .edge files
     new BrowserSyncPlugin({

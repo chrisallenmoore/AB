@@ -9,8 +9,17 @@
     {{ style('app') }}
 </head>
 
-<body>
-    @!section('content')
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        @include('layouts.partials._navigation')
+    </header>
+
+    <main class="flex-grow-1 d-flex flex-column py-4">
+        @!section('content')
+    </main>
+
+    @include('layouts.partials._footer-main')
+
 </body>
 
 </html>

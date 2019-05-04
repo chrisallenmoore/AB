@@ -75,7 +75,7 @@ class PostController {
 
     await post.save()
     // redirect
-    return response.route('home') // @todo update this
+    return response.route('forum') // @todo update this
   }
 }
 

@@ -1,41 +1,29 @@
-<nav class="navbar is-white top-nav">
+<nav class="navbar navbar-dark bg-primary navbar-expand-md p-3">
     <div class="container">
-        <div id="topNav" class="navbar-menu">
-            <div class="navbar-start">
-                <a href="{{ route('home') }}" class="navbar-item">
-                    Forum
-                </a>
-            </div>
-
-            <div class="navbar-end">
+        <a class="navbar-brand" href="{{ route('home') }}">AuthorBoost</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+            <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">First Item</a></li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
                 @loggedIn
-                <div class="navbar-item">
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="{{ route('forum') }}">Forum</a></li>
+                <li class="nav-item d-flex align-items-center" role="presentation">
                     <form action="{{ route('auth.logout') }}" method="POST">
                         {{ csrfField() }}
-                        <button class="button is-white" type="submit" href="#">
-                            Log out
+                        <button class="btn btn-outline-secondary btn-radius-20 px-3 py-1" href="#" type="submit">
+                            Log Out
                         </button>
                     </form>
-                </div>
+                </li>
                 @else
-                <div class="navbar-item">
-                    <div class="field is-grouped">
-                        <p class="control">
-                            <a href="{{ route('auth.register') }}" class="button">
-                                <span>
-                                    Register
-                                </span>
-                            </a>
-                        </p>
-                        <p class="control">
-                            <a href="{{ route('auth.login') }}" class="button is-info is-outlined">
-                                <span>Login</span>
-                            </a>
-                        </p>
-                    </div>
-                </div>
+                <li class="nav-item" role="presentation"><a class="nav-link navbar-login" href="{{ route('auth.login') }}">Log In</a></li>
+                <li class="nav-item d-flex align-items-center" role="presentation"><a class="nav-link btn btn-action btn-navbar px-3 py-1" role="button" href="{{ route('auth.register') }}">Register</a></li>
                 @endloggedIn
-            </div>
+            </ul>
         </div>
     </div>
 </nav>

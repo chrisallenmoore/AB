@@ -13,7 +13,7 @@ class UnansweredPostController {
       .doesntHave('replies')
       .paginate(request.input('page', 1), 20)
 
-    return view.render('index', {
+    return view.render('forum.index', {
       posts
     })
   }
