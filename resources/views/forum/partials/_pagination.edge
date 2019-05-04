@@ -1,16 +1,15 @@
-<nav class="pagination" role="navigation">
-
-    <a href="?page={{ pagination.page - 1 }}" class="pagination-previous" {{ pagination.page <= 1 ? 'disabled="disabled"' : '' }}>Previous</a>
-
-    <a href="?page={{ pagination.page + 1 }}" class="pagination-next" {{ pagination.page >= pagination.lastPage ? 'disabled="disabled"' : '' }}>Next page</a>
-
-    <ul class="pagination-list">
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item {{ pagination.page <= 1 ? 'disabled' : '' }}">
+            <a class="page-link" {{ pagination.page <= 1 ? 'aria-disabled=true' : '' }} href="?page={{ pagination.page - 1 }}" tabindex="-1">Previous</a>
+        </li>
         @each(page in paginationArray(pagination.lastPage))
-        <li>
-            <a href="?page={{ page }}" class="pagination-link{{ pagination.page == page ? ' is-current' : '' }}">
-                {{ page }}
-            </a>
+        <li class="page-item{{ pagination.page == page ? ' active' : '' }}" {{ pagination.page == page ? 'aria-current=page' : '' }}>
+            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
         </li>
         @endeach
+        <li class="page-item {{ pagination.page >= pagination.lastPage ? 'disabled' : '' }}">
+            <a class="page-link" {{ pagination.page >= pagination.lastPage ? 'aria-disabled=true' : '' }} href="?page={{ pagination.page + 1 }}">Next</a>
+        </li>
     </ul>
 </nav>

@@ -4,6 +4,16 @@
 @set('posts', posts.toJSON())
 <div class="p-2 py-4">
         @if(posts.data.length)
+        @if(request.match('/forum'))
+        <h2 class="mb-3">Recent Posts</h2>
+          @elseif(request.match('/forum/unanswered'))
+            <h2 class="mb-3">Unanswered Posts</h2>
+          @else(request.match(['/forum/own']))
+            <h2 class="mb-3">Your Posts</h2>
+          @endif
+
+
+        </h2>
         @each(post in posts.data)
         @include('forum.partials._post')
         @endeach
@@ -12,9 +22,9 @@
         @endif
 
     @if(posts.data.length)
-    <div class="section">
-        @!component('forum.partials._pagination', pagination = posts)
-    </div>
+    <section class="mt-5 d-flex justify-content-center">
+      @!component('forum.partials._pagination', pagination = posts)
+    </section>
     @endif
 </div>
 @endsection

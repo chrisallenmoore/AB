@@ -1,49 +1,60 @@
 @layout('layouts/forum')
 
 @section('content')
-<div class="box content">
-    <form action="{{ route('posts.store') }}" method="POST">
-        {{ csrfField() }}
 
-        <div class="field">
-            <div class="control">
-                <label class="label">Post title</label>
-                <input name="title" class="input{{ hasErrorFor('title') ? ' is-danger' : '' }}" type="text" placeholder="e.g. How can I build a forum with AdonisJS?" value="{{ old('title', '') }}">
+<section id="login" class="bg-white align-self-center mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-column p-2">
 
-                @if(hasErrorFor('title'))
-                <p class="help is-danger">{{ getErrorFor('title') }}</p>
-                @endif
-            </div>
-        </div>
+                    <form action="{{ route('posts.store') }}" method="POST" class="align-self-center w-100">
+                        {{ csrfField() }}
 
-        <div class="field">
-            <div class="control">
-                <label class="label">Choose a tag</label>
-                <div class="select is-fullwidth{{ hasErrorFor('tag') ? ' is-danger' : '' }}">
-                    <select name="tag">
-                        @each(tag in tags.toJSON())
-                        <option value="{{ tag.id }}">{{ tag.name }}</option>
-                        @endeach
-                    </select>
+                        <div class="form-group row">
+                            <h2>Create Post</h2>
+                        </div>
+                        <div class="form-group row">
+
+                            <label>Post title</label>
+                            <input name="title" class="form-control input{{ hasErrorFor('title') ? ' text-danger' : '' }}" type="text" placeholder="e.g. How can I build a forum with AdonisJS?" autofocus value="{{ old('title', '') }}">
+
+                            @if(hasErrorFor('title'))
+                            <p class="text-danger">{{ getErrorFor('title') }}</p>
+                            @endif
+                        </div>
+
+                        <div class="form-group row">
+                            <label>Choose a topic</label>
+                            <select name="tag" class="form-control {{ hasErrorFor('tag') ? ' text-danger' : '' }}">
+                                @each(tag in tags.toJSON())
+                                <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                @endeach
+                            </select>
+
+                            @if(hasErrorFor('tag'))
+                            <p class="text-danger">{{ getErrorFor('tag') }}</p>
+                            @endif
+                        </div>
+
+                        <div class="form-group row">
+                            <label>Post body</label>
+                            <textarea name="body" class="form-control mb-3 {{ hasErrorFor('body') ? ' text-danger' : '' }}">{{ old('body', '') }}</textarea>
+
+                            @if(hasErrorFor('body'))
+                            <p class="text-danger">{{ getErrorFor('body') }}</p>
+                            @endif
+                        </div>
+
+                        <button class="btn btn-primary btn-block btn-lg">Submit</button>
+                    </form>
                 </div>
-
-                @if(hasErrorFor('tag'))
-                <p class="help is-danger">{{ getErrorFor('tag') }}</p>
-                @endif
+                <p class="text-center mt-5">
+                    <a href="{{ route('auth.register') }}">Register</a>
+                </p>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="field">
-            <div class="control">
-                <label class="label">Post body</label>
-                <textarea name="body" class="textarea{{ hasErrorFor('body') ? ' is-danger' : '' }}">{{ old('body', '') }}</textarea>
-
-                @if(hasErrorFor('body'))
-                <p class="help is-danger">{{ getErrorFor('body') }}</p>
-                @endif
-            </div>
-        </div>
-        <button class="button is-info">Post</button>
-    </form>
-</div>
 @endsection

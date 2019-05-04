@@ -112,3 +112,11 @@ body {
     width: 400px;
   }
 }
+
+#forum-show-post .media.media-nested {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.marked-best-answer {
+  border: 2px solid #44475a;
+}
