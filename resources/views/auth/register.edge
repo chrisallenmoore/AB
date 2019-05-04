@@ -12,18 +12,21 @@
                         <h1 class="mb-3">Register</h1>
                         <label class="sr-only">Email address</label>
                         <input name="email" class="form-control mb-3{{ hasErrorFor('email') ? ' text-danger' : '' }}" type="email" placeholder="Your email" autofocus="" value="{{ old('email', '') }}">
+
                         @if(hasErrorFor('email'))
                         <p class="text-danger">{{ getErrorFor('email') }}</p>
                         @endif
 
                         <label class="sr-only">Username</label>
-                        <input name="text" class="form-control mb-3{{ hasErrorFor('username') ? ' text-danger' : '' }}" type="text" placeholder="Choose a username" autofocus="" value="{{ old('username', '') }}">
+                        <input name="username" class="form-control mb-3{{ hasErrorFor('username') ? ' text-danger' : '' }}" type="text" placeholder="Choose a username" autofocus="" value="{{ old('username', '') }}">
+
                         @if(hasErrorFor('username'))
                         <p class="text-danger">{{ getErrorFor('username') }}</p>
                         @endif
 
                         <label class="sr-only">Password</label>
                         <input name="password" class="form-control mb-3{{ hasErrorFor('password') ? ' text-danger' : '' }}" type="password" placeholder="Your password">
+
                         @if(hasErrorFor('password'))
                         <p class="text-danger">{{ getErrorFor('password') }}</p>
                         @endif
