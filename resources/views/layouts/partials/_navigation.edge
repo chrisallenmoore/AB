@@ -6,12 +6,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link{{ request.match(['/about']) ? ' active' : '' }}" href="{{ route('about') }}">About</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 @loggedIn
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ request.match(['/dashboard', '/forum', '/books', '/profile']) ? ' active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Member Areas
                     </a>
