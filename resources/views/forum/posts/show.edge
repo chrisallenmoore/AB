@@ -1,7 +1,8 @@
 @layout('layouts/forum')
 
 @section('content')
-<div class="p-2 py-5">
+
+<section class="p-2 py-4">
     <h4 class="mb-4">
         {{ post.title }}
         <span class="badge badge-light ml-2">{{ post.tag.name }}</span>
@@ -95,5 +96,5 @@
         Please <a href="{{ route('auth.login') }}" class="text-secondary">log in</a> to reply to this post!
     </div>
     @endloggedIn
-</div>
+</section>
 @endsection

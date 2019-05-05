@@ -10,7 +10,21 @@
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 @loggedIn
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="{{ route('forum') }}">Forum</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Member Areas
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item{{ request.match(['/dashboard']) ? ' active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="dropdown-item{{ request.match(['/forum']) ? ' active' : '' }}" href="{{ route('forum') }}">Forum</a>
+                        <a class="dropdown-item{{ request.match(['/books']) ? ' active' : '' }}" href="{{ route('books') }}">Books</a>
+                        <a class="dropdown-item" href="#">Blog Posts</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item{{ request.match(['/profile']) ? ' active' : '' }}" href="/profile">Profile Settings</a>
+                    </div>
+                </li>
+
                 <li class="nav-item d-flex align-items-center" role="presentation">
                     <form action="{{ route('auth.logout') }}" method="POST">
                         {{ csrfField() }}

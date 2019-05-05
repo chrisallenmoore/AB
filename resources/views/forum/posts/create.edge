@@ -2,11 +2,11 @@
 
 @section('content')
 
-<section id="login" class="bg-white align-self-center mt-5">
+<section id="login" class="bg-white align-self-center p-2 py-4">
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="d-flex flex-column p-2">
+                <div class="d-flex flex-column">
 
                     <form action="{{ route('posts.store') }}" method="POST" class="align-self-center w-100">
                         {{ csrfField() }}
@@ -49,9 +49,6 @@
                         <button class="btn btn-primary btn-block btn-lg">Submit</button>
                     </form>
                 </div>
-                <p class="text-center mt-5">
-                    <a href="{{ route('auth.register') }}">Register</a>
-                </p>
             </div>
         </div>
     </div>

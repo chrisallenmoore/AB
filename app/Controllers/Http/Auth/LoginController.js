@@ -40,7 +40,7 @@ class LoginController {
     await auth.attempt(email, password)
 
     //return response.route('home')
-    return response.redirect('back') //@todo: why is this not returning to the previous page?
+    return response.redirect('/dashboard') //@todo: why is this not returning to the previous page?
   }
 }
 
