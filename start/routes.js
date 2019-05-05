@@ -18,6 +18,8 @@ const Route = use('Route')
 
 Route.get('/', 'HomeController.index').as('home')
 
+Route.get('/about', 'AboutController.index').as('about')
+
 Route.get('/forum', 'ForumHomeController.index').as('forum')
 
 Route.group(() => {
